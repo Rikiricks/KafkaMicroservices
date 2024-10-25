@@ -48,7 +48,7 @@ services:
       - 9100:8080
     environment:
       KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: '172.18.0.4:9092,kafka1:9092'
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka1:9092
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
     networks:
       - kafka_network
