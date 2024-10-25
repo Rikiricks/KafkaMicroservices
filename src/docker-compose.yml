@@ -1,0 +1,64 @@
+
+services:
+
+  employeeproducer.api:
+    image: ${DOCKER_REGISTRY-}employeeproducerapi
+    build:
+      context: .
+      dockerfile: Services/Producer/EmployeeProducer.API/Dockerfile
+    networks:
+      - kafka_network
+
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:3.9.1
+    # to survive the container restart
+    tmpfs: "/zktmp"
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: 'yes'
+    ports:
+      - "2181:2181"
+    volumes:
+      - "zookeeper_data:/bitnami"
+    networks:
+      - kafka_network
+
+  kafka1:
+    image: docker.io/bitnami/kafka:3.7.0
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://kafka1:9092,CONTROLLER://kafka1:9093,EXTERNAL://kafka1:9094
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka1:9092,EXTERNAL://kafka1:9094
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - ALLOW_PLAINTEXT_LISTENER=yes
+    volumes:
+      - "kafka_data:/bitnami"
+    networks:
+      - kafka_network
+       
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    depends_on:
+      - kafka1
+    ports:
+      - 9100:8080
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: '172.18.0.4:9092,kafka1:9092'
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+    networks:
+      - kafka_network
+
+networks:
+  kafka_network:
+    driver: bridge
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
