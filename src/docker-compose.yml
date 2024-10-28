@@ -1,6 +1,21 @@
 
 services:
 
+  mongodb:
+    image: mongo:latest
+    container_name: emp-mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: Employees
+    volumes:
+      - emp_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - kafka_network
+
   employeeproducer.api:
     image: ${DOCKER_REGISTRY-}employeeproducerapi
     build:
@@ -67,6 +82,8 @@ services:
       dockerfile: Services/Consumer/Conusmer.Service/Dockerfile
     networks:
       - kafka_network
+    depends_on:
+      - mongodb
 
 networks:
   kafka_network:
@@ -76,5 +93,7 @@ volumes:
   zookeeper_data:
     driver: local
   kafka_data:
+    driver: local
+  emp_data:
     driver: local
 
