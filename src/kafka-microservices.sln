@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeProducer.API", "Ser
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{8C63639B-0582-4A30-B685-4755ACD7DED9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conusmer.Service", "Services\Consumer\Conusmer.Service\Conusmer.Service.csproj", "{84392D8E-921C-4CF9-91BA-EAC0C9B4A737}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conusmer.Service", "Services\Consumer\Conusmer.Service\Conusmer.Service.csproj", "{84392D8E-921C-4CF9-91BA-EAC0C9B4A737}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
