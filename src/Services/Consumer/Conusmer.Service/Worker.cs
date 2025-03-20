@@ -20,7 +20,7 @@ namespace Conusmer.Service
         {
             var consumerConfig = new ConsumerConfig()
             {
-                BootstrapServers = "kafka1:9092",
+                BootstrapServers = "localhost:9092",
                 ClientId = "EmployeeConsumer",
                 GroupId = "EmployeeConsumerGroup",
                 AutoOffsetReset = AutoOffsetReset.Earliest,

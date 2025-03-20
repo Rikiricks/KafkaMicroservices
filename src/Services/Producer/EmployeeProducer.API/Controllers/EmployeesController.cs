@@ -33,7 +33,7 @@ namespace EmployeeProducer.API.Controllers
 
             var producerConfig = new ProducerConfig()
             {
-                BootstrapServers = "kafka1:9092",
+                BootstrapServers = "localhost:9092",
                 Acks = Acks.All,
             };
 
