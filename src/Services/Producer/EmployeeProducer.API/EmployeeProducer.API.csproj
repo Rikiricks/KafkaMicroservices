@@ -11,10 +11,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Protos\employee.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Confluent.Kafka" Version="2.6.0" />
+    <PackageReference Include="Confluent.SchemaRegistry" Version="2.6.0" />
+    <PackageReference Include="Confluent.SchemaRegistry.Serdes.Protobuf" Version="2.6.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.31.1" />
+    <PackageReference Include="Grpc.Tools" Version="2.72.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.10" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\employee.proto" GrpcServices="None" />
   </ItemGroup>
 
 </Project>

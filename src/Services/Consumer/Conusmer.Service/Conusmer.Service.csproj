@@ -10,7 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Protos\employee.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Confluent.Kafka" Version="2.6.0" />
+    <PackageReference Include="Confluent.SchemaRegistry" Version="2.6.0" />
+    <PackageReference Include="Confluent.SchemaRegistry.Serdes.Protobuf" Version="2.6.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.31.1" />
+    <PackageReference Include="Grpc.Tools" Version="2.72.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="MongoDB.Bson" Version="3.0.0" />
@@ -19,5 +30,11 @@
 
   <ItemGroup>
     <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\employee.proto">
+      <GrpcServices>None</GrpcServices>
+    </Protobuf>
   </ItemGroup>
 </Project>

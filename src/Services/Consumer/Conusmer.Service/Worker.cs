@@ -20,9 +20,9 @@ namespace Conusmer.Service
         {
             var consumerConfig = new ConsumerConfig()
             {
-                BootstrapServers = "localhost:9092",
+                BootstrapServers = "localhost:9092", //"broker:29092",
                 ClientId = "EmployeeConsumer",
-                GroupId = "EmployeeConsumerGroup",
+                GroupId = "EmployeeConsumerGroupNew",
                 AutoOffsetReset = AutoOffsetReset.Earliest,
             };
 

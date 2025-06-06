@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option csharp_namespace = "EmployeeProducer.API.Protos";
+
+message Employee
+{
+	string Id = 1;
+	string Name = 2;
+	string SurName = 3;
+}
